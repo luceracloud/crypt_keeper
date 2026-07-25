@@ -10,7 +10,7 @@ jobs:
       fail-fast: false
       matrix:
         ruby-version: [ '2.7', '3.0', '3.1', '3.2', '3.3']
-        rails: ['5_0', '5_1', '5_2', '6_0', '6_1', '7_0', '7_1']
+        rails: ['5_0', '5_1', '5_2', '6_0', '6_1', '7_0', '7_1', '7_2', '8_0', '8_1']
         exclude:
           # exclude unsupported ruby versions: https://github.com/rails/rails/issues/40938
           - ruby-version: '3.0'
@@ -37,6 +37,23 @@ jobs:
             rails: '5_1'
           - ruby-version: '3.3'
             rails: '5_2'
+          # Rails 7.2+ requires Ruby >= 3.1
+          - ruby-version: '2.7'
+            rails: '7_2'
+          - ruby-version: '3.0'
+            rails: '7_2'
+          - ruby-version: '2.7'
+            rails: '8_0'
+          - ruby-version: '3.0'
+            rails: '8_0'
+          - ruby-version: '3.1'
+            rails: '8_0'
+          - ruby-version: '2.7'
+            rails: '8_1'
+          - ruby-version: '3.0'
+            rails: '8_1'
+          - ruby-version: '3.1'
+            rails: '8_1'
 
     env:
       TESTING_RAILS_VERSION: ${{ matrix.rails }}
