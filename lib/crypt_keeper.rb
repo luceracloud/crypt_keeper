@@ -18,8 +18,10 @@ module CryptKeeper
     attr_accessor :silence_logs
     alias_method :silence_logs?, :silence_logs
 
+    # True for Active Record 7.1+ (including 8.x). The serialize `coder:` API
+    # landed in 7.1; MAJOR/MINOR checks incorrectly fail for 8.0 (MINOR == 0).
     def active_record_7_1?
-      ActiveRecord::VERSION::MAJOR >= 7 && ActiveRecord::VERSION::MINOR >= 1
+      ActiveRecord.version >= Gem::Version.new("7.1.0")
     end
   end
 end
